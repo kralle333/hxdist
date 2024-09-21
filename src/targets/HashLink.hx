@@ -22,7 +22,7 @@ class HashLink extends Target {
 			Term.print('Setting exe icon...');
 			runTool('rcedit.exe', ['$packageDir/$projName.exe', '--set-icon "$projDir/meta/$projName.ico"']);
 
-			FileUtil.zipFolder('$outputDir/windows.zip', '$packageDir/');
+			FileUtil.zipFolder('$outputDir/${projName}_hl_win.zip', '$packageDir/');
 	    		
 	    		// Clear afterwards
 			FileUtil.removeDirectory(packageDir);
@@ -47,7 +47,7 @@ class HashLink extends Target {
 			// FileUtil.zipFolder('$outputDir/${projName}_hl_linux_steam.zip', '$outputDir/$projName/');
 
 			// Sys.command('cd', ['$packageDir/']);
-			Sys.command('zip', ['-j', '-r', '$outputDir/linux.zip', '$packageDir']);
+			Sys.command('zip', ['-j', '-r', '$outputDir/${projName}_hl_linux.zip', '$packageDir']);
 
 	    		// Clear afterwards
 			FileUtil.removeDirectory(packageDir);

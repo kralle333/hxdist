@@ -14,7 +14,7 @@ class HashLink extends Target {
         var hxmlContent = Target.parseHxml(projDir, hxml);
 
 		// WINDOWS
-		if(Sys.systemName() == 'Windows') {
+		//if(Sys.systemName() == 'Windows') {
 			var packageDir = '$outputDir/$projName';
 
 			createPackage(hxmlContent, packageDir, winFiles);
@@ -23,9 +23,9 @@ class HashLink extends Target {
 			runTool('rcedit.exe', ['$packageDir/$projName.exe', '--set-icon "$projDir/meta/$projName.ico"']);
 
 			FileUtil.zipFolder('$outputDir/${projName}_hl_win.zip', '$packageDir/');
-		} 
+		//} 
 		// LINUX
-		else if(Sys.systemName() == 'Linux') {
+		//else if(Sys.systemName() == 'Linux') {
 			var packageDir = '$outputDir/$projName';
 
 			createPackage(hxmlContent, packageDir, linuxFiles);
@@ -45,9 +45,9 @@ class HashLink extends Target {
 
 			// Sys.command('cd', ['$packageDir/']);
 			Sys.command('zip', ['-j', '-r', '$outputDir/${projName}_hl_linux.zip', '$packageDir']);
-		} 
+		//} 
 		// MAC
-		else if(Sys.systemName() == 'Mac') {
+		//else if(Sys.systemName() == 'Mac') {
 			var packageDir = '$outputDir/$projName';
 
 			createPackage(hxmlContent, packageDir, macFiles);
@@ -76,7 +76,7 @@ class HashLink extends Target {
 			// Term.print("Stapling notary to app...");
 			// Sys.command('xcrun stapler', ['staple', '$outputFolder/$projName.app']);
 
-		}
+		//}
 	}
 	
     function createPackage(hxml:Array<String>, packageDir:String, files:Target.RuntimeFiles) {

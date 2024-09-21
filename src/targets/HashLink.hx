@@ -1,6 +1,7 @@
 package targets;
 
 import sys.FileSystem;
+import FileUtil;
 
 class HashLink extends Target {
     public function new(dd:String, pd: String, pn:String) {
@@ -16,13 +17,15 @@ class HashLink extends Target {
 		// WINDOWS
 		//if(Sys.systemName() == 'Windows') {
 			var packageDir = '$outputDir/$projName';
-
 			createPackage(hxmlContent, packageDir, winFiles);
 
 			Term.print('Setting exe icon...');
 			runTool('rcedit.exe', ['$packageDir/$projName.exe', '--set-icon "$projDir/meta/$projName.ico"']);
 
-			FileUtil.zipFolder('$outputDir/${projName}_hl_win.zip', '$packageDir/');
+			FileUtil.zipFolder('$outputDir/windows.zip', '$packageDir/');
+	    		
+	    		// Clear afterwards
+			FileUtil.removeDirectory(packageDir);
 		//} 
 		// LINUX
 		//else if(Sys.systemName() == 'Linux') {
@@ -44,10 +47,13 @@ class HashLink extends Target {
 			// FileUtil.zipFolder('$outputDir/${projName}_hl_linux_steam.zip', '$outputDir/$projName/');
 
 			// Sys.command('cd', ['$packageDir/']);
-			Sys.command('zip', ['-j', '-r', '$outputDir/${projName}_hl_linux.zip', '$packageDir']);
-		//} 
+			Sys.command('zip', ['-j', '-r', '$outputDir/linux.zip', '$packageDir']);
+
+	    		// Clear afterwards
+			FileUtil.removeDirectory(packageDir);
+	    	//} 
 		// MAC
-		//else if(Sys.systemName() == 'Mac') {
+		if(Sys.systemName() == 'Mac') {
 			var packageDir = '$outputDir/$projName';
 
 			createPackage(hxmlContent, packageDir, macFiles);
@@ -76,7 +82,7 @@ class HashLink extends Target {
 			// Term.print("Stapling notary to app...");
 			// Sys.command('xcrun stapler', ['staple', '$outputFolder/$projName.app']);
 
-		//}
+		}
 	}
 	
     function createPackage(hxml:Array<String>, packageDir:String, files:Target.RuntimeFiles) {

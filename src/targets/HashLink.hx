@@ -55,8 +55,8 @@ class HashLink extends Target {
 			Term.print("Updating the mac files with execute permissions...");
 			Sys.command('chmod', ['+x', '$packageDir/$projName']);
 			
-			FileUtil.zipFolder(outputDir + '/${projName}_hl_mac_itch.zip', '$outputDir/');
-			FileUtil.zipFolder(outputDir + '/${projName}_hl_mac_steam.zip', '$outputDir/$projName/');
+			FileUtil.zipFolder(outputDir + '/${projName}_hl_mac.zip', '$outputDir/mac');
+			//FileUtil.zipFolder(outputDir + '/${projName}_hl_mac_steam.zip', '$outputDir/$projName/');
 			
 			// Term.print("Input the Developer ID (Developer ID Application: Simon Smith (TK421)):");
 			// var appId:String = Sys.stdin().readLine();

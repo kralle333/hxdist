@@ -53,7 +53,7 @@ class HashLink extends Target {
 			FileUtil.removeDirectory(packageDir);
 	    	//} 
 		// MAC
-		if(Sys.systemName() == 'Mac') {
+		//if(Sys.systemName() == 'Mac') {
 			var packageDir = '$outputDir/$projName';
 
 			createPackage(hxmlContent, packageDir, macFiles);
@@ -82,7 +82,7 @@ class HashLink extends Target {
 			// Term.print("Stapling notary to app...");
 			// Sys.command('xcrun stapler', ['staple', '$outputFolder/$projName.app']);
 
-		}
+		//}
 	}
 	
     function createPackage(hxml:Array<String>, packageDir:String, files:Target.RuntimeFiles) {

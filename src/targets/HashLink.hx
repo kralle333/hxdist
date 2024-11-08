@@ -16,7 +16,7 @@ class HashLink extends Target {
 
 		// WINDOWS
 		//if(Sys.systemName() == 'Windows') {
-			var packageDir = '$outputDir/$projName';
+			var packageDir = '$outputDir/windows/$projName';
 			createPackage(hxmlContent, packageDir, winFiles);
 
 			Term.print('Setting exe icon...');
@@ -25,11 +25,11 @@ class HashLink extends Target {
 			FileUtil.zipFolder('$outputDir/${projName}_hl_win.zip', '$packageDir/');
 	    		
 	    		// Clear afterwards
-			FileUtil.removeDirectory(packageDir);
+			//FileUtil.removeDirectory(packageDir);
 		//} 
 		// LINUX
 		//else if(Sys.systemName() == 'Linux') {
-			var packageDir = '$outputDir/$projName';
+			var packageDir = '$outputDir/linux/$projName';
 
 			createPackage(hxmlContent, packageDir, linuxFiles);
 			
@@ -50,18 +50,19 @@ class HashLink extends Target {
 			Sys.command('zip', ['-j', '-r', '$outputDir/${projName}_hl_linux.zip', '$packageDir']);
 
 	    		// Clear afterwards
-			FileUtil.removeDirectory(packageDir);
+			//FileUtil.removeDirectory(packageDir);
 	    	//} 
 		// MAC
 		//if(Sys.systemName() == 'Mac') {
-			var packageDir = '$outputDir/$projName';
+			var packageDir = '$outputDir/mac/$projName';
 
 			createPackage(hxmlContent, packageDir, macFiles);
 			
 			Term.print("Updating the mac files with execute permissions...");
 			Sys.command('chmod', ['+x', '$packageDir/$projName']);
 			
-			FileUtil.zipFolder(outputDir + '/${projName}_hl_mac.zip', '$outputDir/mac');
+			FileUtil.zipFolder('$outputDir/${projName}_hl_mac.zip', '$packageDir/');
+			//FileUtil.zipFolder(outputDir + '/${projName}_hl_mac.zip', '$outputDir/mac');
 			//FileUtil.zipFolder(outputDir + '/${projName}_hl_mac_steam.zip', '$outputDir/$projName/');
 			
 			// Term.print("Input the Developer ID (Developer ID Application: Simon Smith (TK421)):");

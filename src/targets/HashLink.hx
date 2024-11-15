@@ -20,7 +20,7 @@ class HashLink extends Target {
 			createPackage(hxmlContent, packageDir, winFiles);
 
 			Term.print('Setting exe icon...');
-			runTool('wine rcedit.exe', ['$packageDir/$projName.exe', '--set-icon "$projDir/meta/$projName.ico"']);
+			runTool('rcedit', ['$packageDir/$projName.exe', '--set-icon "$projDir/meta/$projName.ico"']);
 
 			FileUtil.zipFolder('$outputDir/${projName}_hl_win.zip', '$packageDir/');
 	    		
